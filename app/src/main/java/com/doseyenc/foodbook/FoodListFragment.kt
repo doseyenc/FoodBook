@@ -19,5 +19,10 @@ class FoodListFragment : Fragment(R.layout.fragment_food_list) {
         return inflater.inflate(R.layout.fragment_food_list, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
+
 
 }
