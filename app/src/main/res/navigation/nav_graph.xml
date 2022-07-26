@@ -18,5 +18,9 @@
         android:id="@+id/detailFragment"
         tools:layout="@layout/fragment_detail"
         android:name="com.doseyenc.foodbook.DetailFragment"
-        android:label="DetailFragment" />
+        android:label="DetailFragment" >
+        <action
+            android:id="@+id/action_detailFragment_to_foodListFragment"
+            app:destination="@id/foodListFragment" />
+    </fragment>
 </navigation>
