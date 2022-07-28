@@ -6,8 +6,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".DetailFragment">
-        
+        tools:context=".view.DetailFragment">
+
         <ImageView
             android:id="@+id/imageViewFood"
             android:layout_width="match_parent"

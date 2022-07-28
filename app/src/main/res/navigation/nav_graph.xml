@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/foodListFragment"
-        android:name="com.doseyenc.foodbook.FoodListFragment"
+        android:name="com.doseyenc.foodbook.view.FoodListFragment"
         tools:layout="@layout/fragment_food_list"
         android:label="FoodListFragment" >
         <action
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/detailFragment"
         tools:layout="@layout/fragment_detail"
-        android:name="com.doseyenc.foodbook.DetailFragment"
+        android:name="com.doseyenc.foodbook.view.DetailFragment"
         android:label="DetailFragment" >
         <action
             android:id="@+id/action_detailFragment_to_foodListFragment"
