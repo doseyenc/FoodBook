@@ -6,7 +6,7 @@ import com.doseyenc.foodbook.model.FoodModel
 
 class FoodListViewModel : ViewModel() {
     fun refresh_data() {
-        TODO("Not yet implemented")
+
     }
 
     val foods = MutableLiveData<List<FoodModel>>()

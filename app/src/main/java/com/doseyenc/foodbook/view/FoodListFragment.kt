@@ -32,6 +32,7 @@ class FoodListFragment : Fragment(R.layout.fragment_food_list) {
         viewModel = ViewModelProvider(this).get(FoodListViewModel::class.java)
         viewModel.refresh_data()
         setUpRecyclerView()
+        observeLiveData()
 
     }
 
@@ -41,13 +42,13 @@ class FoodListFragment : Fragment(R.layout.fragment_food_list) {
     }
 
     fun observeLiveData() {
-        viewModel.foods.observe(this, Observer {
+        viewModel.foods.observe(viewLifecycleOwner) {
             it?.let {
                 rv_foodList.visibility = View.VISIBLE
                 rv_adapter.updateList(it)
             }
-        })
-        viewModel.foodErrorMessage.observe(this, Observer {
+        }
+        viewModel.foodErrorMessage.observe(viewLifecycleOwner) {
             it?.let {
                 if (it) {
                     textViewError.visibility = View.VISIBLE
@@ -55,8 +56,8 @@ class FoodListFragment : Fragment(R.layout.fragment_food_list) {
                     textViewError.visibility = View.GONE
                 }
             }
-        })
-        viewModel.foodLoading.observe(this, Observer {
+        }
+        viewModel.foodLoading.observe(viewLifecycleOwner) {
             it?.let {
                 if (it) {
                     rv_foodList.visibility = View.GONE
@@ -66,7 +67,7 @@ class FoodListFragment : Fragment(R.layout.fragment_food_list) {
                     progressBar.visibility = View.GONE
                 }
             }
-        })
+        }
 
     }
 }
