@@ -59,6 +59,8 @@ class FoodListFragment : Fragment(R.layout.fragment_food_list) {
         viewModel.foodLoading.observe(this, Observer {
             it?.let {
                 if (it) {
+                    rv_foodList.visibility = View.GONE
+                    textViewError.visibility = View.GONE
                     progressBar.visibility = View.VISIBLE
                 } else {
                     progressBar.visibility = View.GONE
