@@ -4,16 +4,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.doseyenc.foodbook.R
 import com.doseyenc.foodbook.model.FoodModel
 import kotlinx.android.synthetic.main.rv_item_design.view.*
 
-class FoodListAdapter(val list: ArrayList<FoodModel>,
-val foodClickInterface:FoodClick) :
+class FoodListAdapter(
+    val list: ArrayList<FoodModel>,
+    val foodClickInterface: FoodClick
+) :
     RecyclerView.Adapter<FoodListAdapter.FoodViewHolder>() {
 
-    class FoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class FoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(currentFood: FoodModel) {
+            itemView.tv_foodName.text = currentFood.foodName
+            itemView.tv_foodCalory.text = currentFood.foodCalory
+            Glide.with(itemView)
+                .load(currentFood.image)
+                .centerCrop()
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(itemView.iv_foodImage)
+            itemView.setOnClickListener {
+                foodClickInterface.onFoodClick(currentFood)
 
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
@@ -25,15 +41,8 @@ val foodClickInterface:FoodClick) :
 
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         val currentFood = list[position]
-        holder.itemView.tv_foodName.text = currentFood.foodName
-        holder.itemView.tv_foodCalory.text = currentFood.foodCalory
-        /* glide.with(holder.itemView.context)
-             .load(currentFood.image)
-             .into(holder.itemView.iv_foodImage)*/
-        holder.itemView.setOnClickListener {
-           foodClickInterface.onFoodClick(currentFood)
+        holder.bind(currentFood)
 
-        }
     }
 
     override fun getItemCount(): Int = list.size
@@ -43,7 +52,6 @@ val foodClickInterface:FoodClick) :
         list.addAll(newList)
         notifyDataSetChanged()
     }
-
 
 
     interface FoodClick {
