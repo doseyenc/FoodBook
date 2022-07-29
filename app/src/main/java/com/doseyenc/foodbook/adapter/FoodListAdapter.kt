@@ -8,7 +8,9 @@ import com.doseyenc.foodbook.R
 import com.doseyenc.foodbook.model.FoodModel
 import kotlinx.android.synthetic.main.rv_item_design.view.*
 
-class FoodListAdapter(val list:ArrayList<FoodModel>) :RecyclerView.Adapter<FoodListAdapter.FoodViewHolder>() {
+class FoodListAdapter(val list: ArrayList<FoodModel>,
+val foodClickInterface:FoodClick) :
+    RecyclerView.Adapter<FoodListAdapter.FoodViewHolder>() {
 
     class FoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -16,18 +18,22 @@ class FoodListAdapter(val list:ArrayList<FoodModel>) :RecyclerView.Adapter<FoodL
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.rv_item_design,parent,false)
+        val view = inflater.inflate(R.layout.rv_item_design, parent, false)
         return FoodViewHolder(view)
 
     }
 
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
-        val currentFood=list[position]
+        val currentFood = list[position]
         holder.itemView.tv_foodName.text = currentFood.foodName
         holder.itemView.tv_foodCalory.text = currentFood.foodCalory
-       /* glide.with(holder.itemView.context)
-            .load(currentFood.image)
-            .into(holder.itemView.iv_foodImage)*/
+        /* glide.with(holder.itemView.context)
+             .load(currentFood.image)
+             .into(holder.itemView.iv_foodImage)*/
+        holder.itemView.setOnClickListener {
+           foodClickInterface.onFoodClick(currentFood)
+
+        }
     }
 
     override fun getItemCount(): Int = list.size
@@ -38,6 +44,16 @@ class FoodListAdapter(val list:ArrayList<FoodModel>) :RecyclerView.Adapter<FoodL
         notifyDataSetChanged()
     }
 
+
+
+    interface FoodClick {
+        fun onFoodClick(foodModel: FoodModel)
+    }
 }
+
+
+
+
+
 
 

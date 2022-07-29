@@ -7,16 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.doseyenc.foodbook.R
 import com.doseyenc.foodbook.adapter.FoodListAdapter
+import com.doseyenc.foodbook.model.FoodModel
 import com.doseyenc.foodbook.viewmodel.FoodListViewModel
 import kotlinx.android.synthetic.main.fragment_food_list.*
 
 
-class FoodListFragment : Fragment(R.layout.fragment_food_list) {
+class FoodListFragment : Fragment(R.layout.fragment_food_list),FoodListAdapter.FoodClick {
     private lateinit var viewModel: FoodListViewModel
-    private val rv_adapter = FoodListAdapter(arrayListOf())
+    private val rv_adapter = FoodListAdapter(arrayListOf(),this)
 
 
     override fun onCreateView(
@@ -69,6 +71,15 @@ class FoodListFragment : Fragment(R.layout.fragment_food_list) {
             }
         }
 
+    }
+
+    override fun onFoodClick(foodModel: FoodModel) {
+        findNavController().navigate(
+            FoodListFragmentDirections.actionFoodListFragmentToDetailFragment(
+                //foodModel.id
+            0
+            )
+        )
     }
 }
 
