@@ -16,9 +16,9 @@ import com.doseyenc.foodbook.viewmodel.FoodListViewModel
 import kotlinx.android.synthetic.main.fragment_food_list.*
 
 
-class FoodListFragment : Fragment(R.layout.fragment_food_list),FoodListAdapter.FoodClick {
+class FoodListFragment : Fragment(R.layout.fragment_food_list), FoodListAdapter.FoodClick {
     private lateinit var viewModel: FoodListViewModel
-    private val rv_adapter = FoodListAdapter(arrayListOf(),this)
+    private val rv_adapter = FoodListAdapter(arrayListOf(), this)
 
 
     override fun onCreateView(
@@ -32,8 +32,17 @@ class FoodListFragment : Fragment(R.layout.fragment_food_list),FoodListAdapter.F
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(FoodListViewModel::class.java)
-        viewModel.refresh_data()
         setUpRecyclerView()
+        viewModel.refreshData()
+
+        swipeRefreshLayout.setOnRefreshListener {
+            progressBar.visibility = View.VISIBLE
+            textViewError.visibility = View.GONE
+            rv_foodList.visibility = View.GONE
+            viewModel.refreshData()
+            swipeRefreshLayout.isRefreshing = false
+        }
+
         observeLiveData()
 
     }
@@ -43,7 +52,7 @@ class FoodListFragment : Fragment(R.layout.fragment_food_list),FoodListAdapter.F
         rv_foodList.adapter = rv_adapter
     }
 
-    fun observeLiveData() {
+    private fun observeLiveData() {
         viewModel.foods.observe(viewLifecycleOwner) {
             it?.let {
                 rv_foodList.visibility = View.VISIBLE
@@ -77,7 +86,7 @@ class FoodListFragment : Fragment(R.layout.fragment_food_list),FoodListAdapter.F
         findNavController().navigate(
             FoodListFragmentDirections.actionFoodListFragmentToDetailFragment(
                 //foodModel.id
-            0
+                0
             )
         )
     }
