@@ -34,7 +34,6 @@ class FoodListFragment : Fragment(R.layout.fragment_food_list), FoodListAdapter.
         viewModel = ViewModelProvider(this).get(FoodListViewModel::class.java)
         setUpRecyclerView()
         viewModel.refreshData()
-
         swipeRefreshLayout.setOnRefreshListener {
             progressBar.visibility = View.VISIBLE
             textViewError.visibility = View.GONE

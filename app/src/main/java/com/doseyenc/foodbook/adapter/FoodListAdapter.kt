@@ -8,6 +8,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.doseyenc.foodbook.R
 import com.doseyenc.foodbook.model.FoodModel
+import com.doseyenc.foodbook.util.createPlaceHolder
+import com.doseyenc.foodbook.util.setImage
 import kotlinx.android.synthetic.main.rv_item_design.view.*
 
 class FoodListAdapter(
@@ -20,11 +22,8 @@ class FoodListAdapter(
         fun bind(currentFood: FoodModel) {
             itemView.tv_foodName.text = currentFood.foodName
             itemView.tv_foodCalory.text = currentFood.foodCalory
-            Glide.with(itemView)
-                .load(currentFood.image)
-                .centerCrop()
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .into(itemView.iv_foodImage)
+
+            itemView.iv_foodImage.setImage(currentFood.image, createPlaceHolder(itemView.context))
             itemView.setOnClickListener {
                 foodClickInterface.onFoodClick(currentFood)
 
