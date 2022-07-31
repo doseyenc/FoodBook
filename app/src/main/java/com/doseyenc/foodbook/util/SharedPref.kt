@@ -3,6 +3,7 @@ package com.doseyenc.foodbook.util
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import androidx.core.content.edit
 
 class SharedPref {
 
@@ -20,11 +21,13 @@ class SharedPref {
         }
 
         private fun creatSharedPref(context: Context): SharedPref {
-            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+            sharedPreferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context)
             return SharedPref()
         }
     }
     fun saveTime(time :Long){
-        sharedPreferences?.edit(commit = true)
+        sharedPreferences?.edit(commit = true){
+            putLong("time",time)
+        }
     }
 }

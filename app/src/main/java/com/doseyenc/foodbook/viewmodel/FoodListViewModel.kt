@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.doseyenc.foodbook.model.FoodModel
 import com.doseyenc.foodbook.service.FoodAPIService
 import com.doseyenc.foodbook.service.FoodDatabase
+import com.doseyenc.foodbook.util.SharedPref
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposables
@@ -22,6 +23,8 @@ class FoodListViewModel(application: Application) : BaseViewModel(application) {
 
     private val foodApiService = FoodAPIService()
     private val disposable = CompositeDisposable()
+
+    private val SharedPref = SharedPref(getApplication())
 
     fun refreshData() {
         getDataFromServer()
@@ -66,6 +69,7 @@ class FoodListViewModel(application: Application) : BaseViewModel(application) {
             }
             showFoods(t)
         }
+        SharedPref.saveTime(System.nanoTime())
     }
 
 }
