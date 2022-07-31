@@ -85,7 +85,7 @@ class FoodListFragment : Fragment(R.layout.fragment_food_list), FoodListAdapter.
         findNavController().navigate(
             FoodListFragmentDirections.actionFoodListFragmentToDetailFragment(
                 //foodModel.id
-                0
+                foodModel.id
             )
         )
     }
