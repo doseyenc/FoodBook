@@ -2,7 +2,6 @@ package com.doseyenc.foodbook.util
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
 import androidx.core.content.edit
 
 class SharedPref {
@@ -30,4 +29,5 @@ class SharedPref {
             putLong("time",time)
         }
     }
+    fun getTime() = sharedPreferences?.getLong("time",0)
 }

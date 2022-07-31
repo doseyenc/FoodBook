@@ -38,7 +38,7 @@ class FoodListFragment : Fragment(R.layout.fragment_food_list), FoodListAdapter.
             progressBar.visibility = View.VISIBLE
             textViewError.visibility = View.GONE
             rv_foodList.visibility = View.GONE
-            viewModel.refreshData()
+            viewModel.refreshFromServer()
             swipeRefreshLayout.isRefreshing = false
         }
 
