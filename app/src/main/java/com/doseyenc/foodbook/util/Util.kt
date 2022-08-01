@@ -2,6 +2,7 @@ package com.doseyenc.foodbook.util
 
 import android.content.Context
 import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -24,4 +25,9 @@ fun createPlaceHolder(context: Context): CircularProgressDrawable {
         centerRadius = 40f
         start()
     }
+}
+
+@BindingAdapter("android:downloadImage")
+fun downloadImage(view:ImageView,url :String){
+    view.setImage(url, createPlaceHolder(view.context))
 }

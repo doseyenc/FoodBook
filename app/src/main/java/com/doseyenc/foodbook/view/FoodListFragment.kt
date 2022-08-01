@@ -84,7 +84,6 @@ class FoodListFragment : Fragment(R.layout.fragment_food_list), FoodListAdapter.
     override fun onFoodClick(foodModel: FoodModel) {
         findNavController().navigate(
             FoodListFragmentDirections.actionFoodListFragmentToDetailFragment(
-                //foodModel.id
                 foodModel.id
             )
         )
