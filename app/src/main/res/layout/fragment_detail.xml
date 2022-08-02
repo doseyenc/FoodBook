@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="foodDetail"
+            name="choosenFood"
             type="com.doseyenc.foodbook.model.FoodModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +26,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:downloadImage="@{foodDetail.image}"
+            android:downloadImage="@{choosenFood.image}"
             app:srcCompat="@drawable/ic_launcher_background"
             tools:ignore="ImageContrastCheck" />
 
@@ -42,7 +42,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewFood"
-            android:text="@{foodDetail.foodName}"
+            android:text="@{choosenFood.foodName}"
             tools:text="Food name" />
 
         <TextView
@@ -56,7 +56,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewFoodName"
-            android:text="@{foodDetail.foodCalory}"
+            android:text="@{choosenFood.foodCalory}"
             tools:text="Kalori" />
 
         <TextView
@@ -69,7 +69,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewCalories"
-            android:text="@{foodDetail.foodCarbonHydrat}"
+            android:text="@{choosenFood.foodCarbonHydrat}"
             tools:text="Karbonhidrat" />
 
         <TextView
@@ -82,7 +82,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textVievCarbohydrate"
-            android:text="@{foodDetail.foodProtein}"
+            android:text="@{choosenFood.foodProtein}"
             tools:text="Protein" />
 
         <TextView
@@ -95,7 +95,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textVievProtein"
-            android:text="@{foodDetail.foodFat}"
+            android:text="@{choosenFood.foodFat}"
             tools:text="Yağ" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
@@ -21,8 +22,7 @@ import kotlin.properties.Delegates
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
     private lateinit var viewModel: FoodDetailViewModel
-    private val args by navArgs<DetailFragmentArgs>()
-    private  var clickedFoodId:Int =-1
+    private  var clickedFoodId:Int = 0
     private lateinit var binding: FragmentDetailBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,10 +35,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        args.let {
-            clickedFoodId = args.id
-
-            Log.e("id",clickedFoodId.toString())
+        arguments?.let {
+            clickedFoodId = DetailFragmentArgs.fromBundle(it).id
         }
         viewModel = ViewModelProvider(this).get(FoodDetailViewModel::class.java)
         viewModel.getRoomData(clickedFoodId)
@@ -47,7 +45,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private fun observeLiveData() {
         viewModel.food.observe(viewLifecycleOwner) { food ->
             food?.let {
-                binding.foodDetail = food
+                binding.choosenFood = it
             }
         }
     }

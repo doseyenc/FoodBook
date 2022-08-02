@@ -9,7 +9,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.doseyenc.foodbook.R
 
-fun ImageView.setImage(url: String, placeholder: CircularProgressDrawable) {
+fun ImageView.setImage(url: String?, placeholder: CircularProgressDrawable) {
     val options = RequestOptions().placeholder(placeholder).error(R.mipmap.ic_launcher)
     Glide.with(context)
         .setDefaultRequestOptions(options)
@@ -28,6 +28,6 @@ fun createPlaceHolder(context: Context): CircularProgressDrawable {
 }
 
 @BindingAdapter("android:downloadImage")
-fun downloadImage(view:ImageView,url :String){
+fun downloadImage(view:ImageView,url :String?){
     view.setImage(url, createPlaceHolder(view.context))
 }
